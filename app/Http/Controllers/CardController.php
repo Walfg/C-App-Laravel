@@ -38,20 +38,18 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
-        if (is_null($request->get("name"))){
-            return back()
-            ->withErrors(["name" => "This field is required."]);
-            // return redirect()->back()
-            // ->withErrors(["name" => "This field is required."]);
-            // return redirect(route("card.create"))
-            // ->withErrors(["name" => "This field is required."]);
-            // return redirect("/card/create")
-            // ->withErrors(["name" => "This field is required."]);
-            // return response()->redirectTo("/card/create")
-            // ->withErrors(["name" => "This field is required."]);
-            // return Response::redirectTo("/card/create")
-            // ->withErrors(["name" => "This field is required."]);
-        }
+        $request->validate([
+            "name" => "required",
+            "phone_number" => "required|digits:9",
+            "email" => "required|email",
+            "age" => "required|numeric|min:3|max:255"
+        ]);
+        // $request->validate([
+        //     "name" => "required",
+        //     "phone_number" => ["required", "digits:9"],
+        //     "email" => ["required","email"],
+        //     "age" => ["required", "numeric", "min:3", "max:255"]
+        // ]);
         return response("Contact Card Carted!");
     }
 
