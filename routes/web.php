@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CardController;
 use App\Models\Card;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
@@ -32,31 +33,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/card', fn() => Response::view('/card'));
-// Route::get('/card', function(){
-//     return Response::view('/card');
-// });
-
-
-// Route::post('/card', function(Request $request){
-//     dd($request->query('phone_number'));
-// });
-
-Route::post('/card', function(Request $request){
-    $data = $request->all();
-
-    // dd($data);
-    DB::statement(
-        "INSERT INTO contacts (name, phone_number)
-        VALUES (?,?)", [$data["name"], $data["phone_number"]]
-        );
-
-
-        Card::create($data);
-        // $card = new Card();
-        // $card->name = $data["name"];
-        // $card->phone_number = $data["phone_number"];
-        // $card->save();
-
-    return "Contact Card stored!";
-});
+Route::get("/card/create",[CardController::class, "create"])->name("card.create");
+Route::POST("/card",[CardController::class, "store"])->name("card.store");
