@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Card;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +50,13 @@ Route::post('/card', function(Request $request){
         "INSERT INTO contacts (name, phone_number)
         VALUES (?,?)", [$data["name"], $data["phone_number"]]
         );
+
+
+        Card::create($data);
+        // $card = new Card();
+        // $card->name = $data["name"];
+        // $card->phone_number = $data["phone_number"];
+        // $card->save();
 
     return "Contact Card stored!";
 });
