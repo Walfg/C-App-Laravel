@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
@@ -35,28 +36,19 @@ Route::get('/card', fn() => Response::view('/card'));
 //     return Response::view('/card');
 // });
 
+
 // Route::post('/card', function(Request $request){
 //     dd($request->query('phone_number'));
 // });
 
 Route::post('/card', function(Request $request){
-   return Response::json(["message" => "hola"])->setStatusCode(404);
-});
+    $data = $request->all();
 
-Route::get('/ch-passwd', fn() => Response::view('ch-passwd'));
-// Route::get('/ch-passwd', function(Request $request){
-//    return Response::view('ch-passwd');
-// });
+    // dd($data);
+    DB::statement(
+        "INSERT INTO contacts (name, phone_number)
+        VALUES (?,?)", [$data["name"], $data["phone_number"]]
+        );
 
-Route::post('/ch-passwd', function(Request $request){
-    // if (Auth::check()){
-    if (auth()->check()){
-        return response("Authenticated {$request->get("password")}" );
-        // return new HttpResponse("Authenticated");
-    }
-    else{
-        return response("Not Authenticated", 401);
-        // return (new HttpResponse("Not Authenticated"))->setStatusCode(401);
-    }
-    return "Password DETECTED?";
+    return "Contact Card stored!";
 });

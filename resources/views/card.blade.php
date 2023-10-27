@@ -8,7 +8,9 @@
                 <div class="card-header">Create New Contact</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/card?test=2&data=string">
+
+                    <form method="POST" action="/card">
+                    @csrf
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
 
