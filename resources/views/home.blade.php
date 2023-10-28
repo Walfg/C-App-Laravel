@@ -8,13 +8,16 @@
                 <div class="col-md-4 mb-3">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h3 class="card-title text-capitalize">{{ $card->name }}</h3>
+                            <a class="text-decoration-none text-white" href="{{ route('contacts.show', $card->id) }}">
+                                <h3 class="card-title text-capitalize">{{ $card->name }}</h3>
+                            </a>
                             <p class="m-2">{{ $card->phone_number }}</p>
-                            <a href="{{ route('contacts.edit', $card->id) }}" class="btn btn-secondary mb-2">Edit Contact</a>
+                            <a href="{{ route('contacts.edit', $card->id) }}"
+                                class="btn btn-secondary mb-2">Edit Contact</a>
 
-                            <form method="POST" action="{{ route("contacts.destroy", $card->id) }}">
+                            <form method="POST" action="{{ route('contacts.destroy', $card->id) }}">
                                 @csrf
-                                @method("DELETE")
+                                @method('DELETE')
                                 <button type="submit" class="btn btn-danger mb-2">Delete Contact</button>
                             </form>
                         </div>

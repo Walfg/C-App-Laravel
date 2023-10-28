@@ -12067,3 +12067,13 @@ textarea.form-control-lg {
     background-size: cover;
 }
 
+.hbg {
+
+  background-color: #444;
+  transition: background-color 0.3s;
+}
+
+.hbg:hover {
+    background-color: #3a3a3a;
+  }
+

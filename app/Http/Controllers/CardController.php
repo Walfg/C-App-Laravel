@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Card;
-use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 
-use function PHPUnit\Framework\isNull;
 
 class CardController extends Controller
 {
@@ -18,7 +15,7 @@ class CardController extends Controller
      */
     public function index()
     {
-        //
+        return view('contacts.index', ['contacts' => Card::all()]);
     }
 
     /**
@@ -65,7 +62,7 @@ class CardController extends Controller
      */
     public function show(Card $card)
     {
-        //
+        return view("contacts.show", compact('card'));
     }
 
     /**
