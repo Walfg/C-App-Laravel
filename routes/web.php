@@ -1,12 +1,8 @@
 <?php
 
 use App\Http\Controllers\CardController;
-use App\Models\Card;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response as HttpResponse;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +27,9 @@ Route::post('/ruta/post', function(){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get("/card/create",[CardController::class, "create"])->name("card.create");
-Route::POST("/card",[CardController::class, "store"])->name("card.store");
+Route::get("/contacts/create",[CardController::class, "create"])->name("contacts.create");
+Route::get("/contacts/{card}/edit",[CardController::class, "edit"])->name("contacts.edit");
+Route::put("/contacts/{card}/update",[CardController::class, "update"])->name("contacts.update");
+Route::POST("/contacts",[CardController::class, "store"])->name("contacts.store");

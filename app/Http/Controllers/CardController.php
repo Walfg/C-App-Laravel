@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Card;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -27,7 +28,7 @@ class CardController extends Controller
      */
     public function create()
     {
-        return view('card');
+        return view('contacts.create');
     }
 
     /**
@@ -38,7 +39,7 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             "name" => "required",
             "phone_number" => "required|digits:9",
             "email" => "required|email",
@@ -50,7 +51,10 @@ class CardController extends Controller
         //     "email" => ["required","email"],
         //     "age" => ["required", "numeric", "min:3", "max:255"]
         // ]);
-        return response("Contact Card Carted!");
+        // dd($data);
+        Card::create($data);
+
+        return redirect()->route('home');
     }
 
     /**
@@ -72,7 +76,8 @@ class CardController extends Controller
      */
     public function edit(Card $card)
     {
-        //
+        return view('contacts.edit', compact("card"));
+        // return view('contacts.edit', ["card" => $card]);
     }
 
     /**
@@ -84,7 +89,16 @@ class CardController extends Controller
      */
     public function update(Request $request, Card $card)
     {
-        //
+        $data = $request->validate([
+            "name" => "required",
+            "phone_number" => "required|digits:9",
+            "email" => "required|email",
+            "age" => "required|numeric|min:3|max:255"
+        ]);
+
+        $card->update($data);
+
+        return redirect()->route("home");
     }
 
     /**

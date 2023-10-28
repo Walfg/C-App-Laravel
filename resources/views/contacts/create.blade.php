@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                    <form method="POST" action="{{ route("card.store") }}">
+                    <form method="POST" action="{{ route("contacts.store") }}">
                     {{-- <form method="POST" action="/card"> --}}
                     @csrf
                         <div class="row mb-3">
