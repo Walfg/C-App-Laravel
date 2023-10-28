@@ -109,6 +109,8 @@ class CardController extends Controller
      */
     public function destroy(Card $card)
     {
-        //
+
+        $card->delete();
+        return redirect()->route("home");
     }
 }

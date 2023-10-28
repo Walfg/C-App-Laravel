@@ -31,5 +31,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get("/contacts/create",[CardController::class, "create"])->name("contacts.create");
 Route::get("/contacts/{card}/edit",[CardController::class, "edit"])->name("contacts.edit");
-Route::put("/contacts/{card}/update",[CardController::class, "update"])->name("contacts.update");
+Route::put("/contacts/{card}/",[CardController::class, "update"])->name("contacts.update");
 Route::POST("/contacts",[CardController::class, "store"])->name("contacts.store");
+Route::delete("/contacts/{card}/",[CardController::class, "destroy"])->name("contacts.destroy");
