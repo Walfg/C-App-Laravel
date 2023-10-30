@@ -15,7 +15,12 @@ class CardController extends Controller
      */
     public function index()
     {
-        return view('contacts.index', ['contacts' => Card::all()]);
+
+        $contacts = auth()->user()->contacts;
+        // $contacts = auth()->user()->contacts()->get();
+        // $contacts = Card::query()->where('user_id', auth()->id())->get();
+        return view('contacts.index', compact('contacts'));
+        // return view('contacts.index', ["contacts" => Card::all()]);
     }
 
     /**
@@ -48,8 +53,12 @@ class CardController extends Controller
         //     "email" => ["required","email"],
         //     "age" => ["required", "numeric", "min:3", "max:255"]
         // ]);
-        // dd($data);
-        Card::create($data);
+
+        auth()->user()->contacts()->create($data);
+        // Card::create([...$data, "user_id" => auth()->id()]);
+        ////
+        // $data["user_id"] = auth()->id();
+        // Card::create($data);
 
         return redirect()->route('home');
     }
