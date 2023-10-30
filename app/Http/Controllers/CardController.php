@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Card;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 
 class CardController extends Controller
 {
@@ -71,6 +72,18 @@ class CardController extends Controller
      */
     public function show(Card $card)
     {
+
+        $this->authorize("view", $card);
+        // if (! Gate::allows('update-post', $card)) {
+        //     abort(403);
+        // }
+        // abort_if($card->user_id !== auth()->id(), 403);
+
+        // if ($card->user_id !== auth()->id()){
+        //     // dd($card->name, "card", auth()->id(),"user");
+        //     abort(Response::HTTP_FORBIDDEN);
+        //     // abort(403, "Not owning or existing");
+        // };
         return view("contacts.show", compact('card'));
     }
 
@@ -82,6 +95,8 @@ class CardController extends Controller
      */
     public function edit(Card $card)
     {
+        $this->authorize("update", $card);
+
         return view('contacts.edit', compact("card"));
         // return view('contacts.edit', ["card" => $card]);
     }
@@ -95,6 +110,9 @@ class CardController extends Controller
      */
     public function update(Request $request, Card $card)
     {
+
+        $this->authorize("update", $card);
+
         $data = $request->validate([
             "name" => "required",
             "phone_number" => "required|digits:9",
@@ -115,6 +133,8 @@ class CardController extends Controller
      */
     public function destroy(Card $card)
     {
+
+        $this->authorize("delete", $card);
 
         $card->delete();
         return redirect()->route("home");
