@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCardRequest;
 use App\Models\Card;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -9,6 +10,12 @@ use Illuminate\Support\Facades\Gate;
 
 class CardController extends Controller
 {
+    // protected $rules = [
+    //     "name" => "required",
+    //     "phone_number" => "required|digits:9",
+    //     "email" => "required|email",
+    //     "age" => "required|numeric|min:3|max:255"
+    // ];
     /**
      * Display a listing of the resource.
      *
@@ -40,14 +47,18 @@ class CardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCardRequest $request)
     {
-        $data = $request->validate([
-            "name" => "required",
-            "phone_number" => "required|digits:9",
-            "email" => "required|email",
-            "age" => "required|numeric|min:3|max:255"
-        ]);
+        // $data = $request-> validated();
+
+        // $data = $request->validate($this->rules);
+
+        // $data = $request->validate([
+        //     "name" => "required",
+        //     "phone_number" => "required|digits:9",
+        //     "email" => "required|email",
+        //     "age" => "required|numeric|min:3|max:255"
+        // ]);
         // $request->validate([
         //     "name" => "required",
         //     "phone_number" => ["required", "digits:9"],
@@ -55,7 +66,8 @@ class CardController extends Controller
         //     "age" => ["required", "numeric", "min:3", "max:255"]
         // ]);
 
-        auth()->user()->contacts()->create($data);
+        auth()->user()->contacts()->create($request->validated());
+        // auth()->user()->contacts()->create($data);
         // Card::create([...$data, "user_id" => auth()->id()]);
         ////
         // $data["user_id"] = auth()->id();
@@ -108,19 +120,23 @@ class CardController extends Controller
      * @param  \App\Models\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Card $card)
+    public function update(StoreCardRequest $request, Card $card)
     {
 
         $this->authorize("update", $card);
 
-        $data = $request->validate([
-            "name" => "required",
-            "phone_number" => "required|digits:9",
-            "email" => "required|email",
-            "age" => "required|numeric|min:3|max:255"
-        ]);
+        // $data = $request->validate($this->rules);
 
-        $card->update($data);
+        // $data = $request->validate([
+        //     "name" => "required",
+        //     "phone_number" => "required|digits:9",
+        //     "email" => "required|email",
+        //     "age" => "required|numeric|min:3|max:255"
+        // ]);
+
+        $card->update($request->validated());
+
+        // $card->update($data);
 
         return redirect()->route("home");
     }
