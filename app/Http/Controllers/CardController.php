@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCardRequest;
 use App\Models\Card;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Session;
 
 class CardController extends Controller
 {
@@ -66,14 +64,19 @@ class CardController extends Controller
         //     "age" => ["required", "numeric", "min:3", "max:255"]
         // ]);
 
-        auth()->user()->contacts()->create($request->validated());
+        $card = auth()->user()->contacts()->create($request->validated());
         // auth()->user()->contacts()->create($data);
         // Card::create([...$data, "user_id" => auth()->id()]);
         ////
         // $data["user_id"] = auth()->id();
         // Card::create($data);
 
-        return redirect()->route('home');
+        // Session::flash("alert", ["message" => "Contact Card for $card->name created!","type" => "success"]);
+
+        return redirect()->route('home')->with("alert", [
+            "message" => "Contact Card for $card->name created!",
+            "type" => "success"
+        ]);
     }
 
     /**
@@ -96,6 +99,7 @@ class CardController extends Controller
         //     abort(Response::HTTP_FORBIDDEN);
         //     // abort(403, "Not owning or existing");
         // };
+
         return view("contacts.show", compact('card'));
     }
 
@@ -138,7 +142,12 @@ class CardController extends Controller
 
         // $card->update($data);
 
-        return redirect()->route("home");
+        // Session::flash("alert", ["message" => "$card->name Contact Card updated!", "type" => "warning"]);
+
+        return redirect()->route("home")->with("alert", [
+            "message" => "$card->name Contact Card updated!",
+            "type" => "warning"
+        ]);
     }
 
     /**
@@ -153,6 +162,12 @@ class CardController extends Controller
         $this->authorize("delete", $card);
 
         $card->delete();
-        return redirect()->route("home");
+
+        // Session::flash("alert", ["message" => "$card->name Contact Card deleted!", "type" => "danger"]);
+
+        return redirect()->route("home")->with("alert", [
+            "message" => "$card->name Contact Card deleted!",
+            "type" => "danger"
+        ]);
     }
 }
