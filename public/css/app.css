@@ -12077,3 +12077,9 @@ textarea.form-control-lg {
     background-color: #3a3a3a;
   }
 
+  .profile_pic {
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+  }
+

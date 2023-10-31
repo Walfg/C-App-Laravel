@@ -22,7 +22,8 @@ class CardController extends Controller
     public function index()
     {
 
-        $contacts = auth()->user()->contacts;
+        $contacts = auth()->user()->contacts()->paginate(6);
+        // $contacts = auth()->user()->contacts()->orderBy('name', 'desc')->paginate(6);
         // $contacts = auth()->user()->contacts()->get();
         // $contacts = Card::query()->where('user_id', auth()->id())->get();
         return view('contacts.index', compact('contacts'));
@@ -47,7 +48,7 @@ class CardController extends Controller
      */
     public function store(StoreCardRequest $request)
     {
-        // $data = $request-> validated();
+        $data = $request-> validated();
 
         // $data = $request->validate($this->rules);
 
@@ -64,7 +65,13 @@ class CardController extends Controller
         //     "age" => ["required", "numeric", "min:3", "max:255"]
         // ]);
 
-        $card = auth()->user()->contacts()->create($request->validated());
+        if ($request->hasFile("profile_picture")) {
+            $path = $request->file("profile_picture")->store("profiles", "public");
+            $data["profile_picture"] = $path;
+        }
+
+        $card = auth()->user()->contacts()->create($data);
+        // $card = auth()->user()->contacts()->create($request->validated());
         // auth()->user()->contacts()->create($data);
         // Card::create([...$data, "user_id" => auth()->id()]);
         ////
@@ -129,6 +136,8 @@ class CardController extends Controller
 
         $this->authorize("update", $card);
 
+        $data = $request->validated();
+
         // $data = $request->validate($this->rules);
 
         // $data = $request->validate([
@@ -137,8 +146,12 @@ class CardController extends Controller
         //     "email" => "required|email",
         //     "age" => "required|numeric|min:3|max:255"
         // ]);
+        if ($request->hasFile("profile_picture")) {
+            $path = $request->file("profile_picture")->store("profiles", "public");
+            $data["profile_picture"] = $path;
+        };
 
-        $card->update($request->validated());
+        $card->update($data);
 
         // $card->update($data);
 

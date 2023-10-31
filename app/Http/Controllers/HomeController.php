@@ -25,6 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         // dd(Card::all());
-        return view('home', ['contacts' => auth()->user()->contacts]);
+        return view('home', [
+            'contacts' => auth()->user()->contacts()->latest()->get()->take(9)]);
     }
 }

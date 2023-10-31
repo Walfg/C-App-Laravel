@@ -7,7 +7,7 @@
                 <div id="myDiv" class="d-flex justify-content-between hbg mb-3 rounded px-4 py-2">
 
                     <div>
-                        <img src="/img/logo.png" style="width: 20px">
+                        <img class="profile_pic" src="{{ Storage::url($card->profile_picture) }}">
                     </div>
                     <div class="d-flex align-items-center">
                         <p class="me-2 mb-0">
@@ -22,19 +22,21 @@
                         <p class="me-2 mb-0 d-none d-md-block">
                             {{ $card->age }}
                         </p>
-                          <a class="btn btn-secondary mb-0 me-2 p-1 px-2" href="{{ route('contacts.edit', $card->id) }}">
-                        <x-icon icon="pencil" />
-                    </a>
+                        <a class="btn btn-secondary mb-0 me-2 p-1 px-2" href="{{ route('contacts.edit', $card->id) }}">
+                            <x-icon icon="pencil" />
+                        </a>
 
-                    <form method="POST" action="{{ route('contacts.destroy', $card->id) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger mb-0 me-2 p-1 px-2">
-                            <x-icon icon="trash" />
-                        </button>
-                    </form>
+                        <form method="POST" action="{{ route('contacts.destroy', $card->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger mb-0 me-2 p-1 px-2">
+                                <x-icon icon="trash" />
+                            </button>
+                        </form>
 
                     </div>
+
+
 
 
                 </div>
@@ -47,5 +49,6 @@
                 </div>
             </div>
         @endforelse
+         {{ $contacts->links() }}
     </div>
 @endsection

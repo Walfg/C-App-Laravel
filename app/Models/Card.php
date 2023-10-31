@@ -15,7 +15,8 @@ class Card extends Model
         "phone_number",
         "email",
         "age",
-        "user_id"
+        "user_id",
+        "profile_picture"
     ];
 
     public function user(){

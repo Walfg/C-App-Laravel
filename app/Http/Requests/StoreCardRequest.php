@@ -27,7 +27,8 @@ class StoreCardRequest extends FormRequest
             "name" => "required",
             "phone_number" => "required|digits:9",
             "email" => "required|email",
-            "age" => "required|numeric|min:3|max:255"
+            "age" => "required|numeric|min:3|max:255",
+            "profile_pricture" => "image|nullable"
         ];
     }
 }
