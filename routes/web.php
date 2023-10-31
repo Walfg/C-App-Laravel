@@ -3,6 +3,7 @@
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\HomeController;
 use App\Models\Card;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,12 +29,26 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get("/contacts",[CardController::class, "index"])->name("contacts.index");
-Route::get("/contacts/create",[CardController::class, "create"])->name("contacts.create");
-Route::post("/contacts",[CardController::class, "store"])->name("contacts.store");
-Route::get("/contacts/{card}",[CardController::class, "show"])->name("contacts.show");
-Route::get("/contacts/{card}/edit",[CardController::class, "edit"])->name("contacts.edit");
-Route::put("/contacts/{card}",[CardController::class, "update"])->name("contacts.update");
-Route::delete("/contacts/{card}",[CardController::class, "destroy"])->name("contacts.destroy");
+Route::middleware("auth")->get("/contacts",[CardController::class, "index"])->name("contacts.index");
+Route::middleware("auth")->get("/contacts/create",[CardController::class, "create"])->name("contacts.create");
+Route::middleware("auth")->post("/contacts",[CardController::class, "store"])->name("contacts.store");
+Route::middleware("auth")->get("/contacts/{card}",[CardController::class, "show"])->name("contacts.show");
+Route::middleware("auth")->get("/contacts/{card}/edit",[CardController::class, "edit"])->name("contacts.edit");
+Route::middleware("auth")->put("/contacts/{card}",[CardController::class, "update"])->name("contacts.update");
+Route::middleware("auth")->delete("/contacts/{card}",[CardController::class, "destroy"])->name("contacts.destroy");
 
-// Route::resource("contacts", CardController::class);
+// Route::middleware("auth")->resource("contacts", CardController::class);
+
+
+Route::middleware("auth")->get('/billing-portal', function (Request $request) {
+    return $request->user()?->redirectToBillingPortal();
+});
+
+
+Route::middleware("auth")->get('/sub-checkout', function (Request $request) {
+    return $request->user()
+        ->newSubscription('default', config("stripe.price_id"))
+        ->checkout();
+});
+
+// Route::middleware("auth")->

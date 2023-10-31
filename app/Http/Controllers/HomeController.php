@@ -26,6 +26,6 @@ class HomeController extends Controller
     {
         // dd(Card::all());
         return view('home', [
-            'contacts' => auth()->user()->contacts()->latest()->get()->take(9)]);
+            'contacts' => auth()->user()?->contacts()->latest()->get()->take(9)]);
     }
 }

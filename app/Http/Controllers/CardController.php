@@ -21,10 +21,9 @@ class CardController extends Controller
      */
     public function index()
     {
-
-        $contacts = auth()->user()->contacts()->paginate(6);
-        // $contacts = auth()->user()->contacts()->orderBy('name', 'desc')->paginate(6);
-        // $contacts = auth()->user()->contacts()->get();
+        $contacts = auth()->user()?->contacts()->paginate(6);
+        // $contacts = auth()->user()?->contacts()->orderBy('name', 'desc')->paginate(6);
+        // $contacts = auth()->user()?->contacts()->get();
         // $contacts = Card::query()->where('user_id', auth()->id())->get();
         return view('contacts.index', compact('contacts'));
         // return view('contacts.index', ["contacts" => Card::all()]);
@@ -70,9 +69,9 @@ class CardController extends Controller
             $data["profile_picture"] = $path;
         }
 
-        $card = auth()->user()->contacts()->create($data);
-        // $card = auth()->user()->contacts()->create($request->validated());
-        // auth()->user()->contacts()->create($data);
+        $card = auth()->user()?->contacts()->create($data);
+        // $card = auth()->user()?->contacts()->create($request->validated());
+        // auth()->user()?->contacts()->create($data);
         // Card::create([...$data, "user_id" => auth()->id()]);
         ////
         // $data["user_id"] = auth()->id();
