@@ -165,7 +165,7 @@ class CardController extends Controller
 
         // Session::flash("alert", ["message" => "$card->name Contact Card deleted!", "type" => "danger"]);
 
-        return redirect()->route("home")->with("alert", [
+        return back()->with("alert", [
             "message" => "$card->name Contact Card deleted!",
             "type" => "danger"
         ]);
