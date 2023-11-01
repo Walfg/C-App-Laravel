@@ -90,21 +90,24 @@
 
         <main class="py-4">
             @if ($alert = Session::get('alert'))
-            {{-- @if ($alert = session()->get('alert')) --}}
-            {{-- @if ($alert = Session::has('alert')) --}}
-            {{-- @php
+                {{-- @if ($alert = session()->get('alert')) --}}
+                {{-- @if ($alert = Session::has('alert')) --}}
+                {{-- @php
                 $alert = Session::get('alert');
                 $type = $alert['type'];
                 $message = $alert['message'];
             @endphp --}}
-             <x-alert :type="$alert['type']" :message="$alert['message']" />
+                <x-alert :type="$alert['type']" :message="$alert['message']" />
             @endif
             @php
-                $freeTrialRemainingDays = now() -> diffInDays(auth()->user()?->trial_ends_at);
+                $freeTrialRemainingDays = now()->diffInDays(auth()->user()?->trial_ends_at);
             @endphp
-                {{-- $freeTrialRemainingDays = auth()->user()?->trial_ends_at-now(); --}}
-            @if(!auth()->user()?->subscribed() && auth()->user()?->onTrial())
-            <x-alert type="info" message="Trial ends in {{ $freeTrialRemainingDays }} days"/>
+            {{-- $freeTrialRemainingDays = auth()->user()?->trial_ends_at-now(); --}}
+            @if (
+                !auth()->user()?->subscribed() && auth()->user()?->onTrial())
+                <x-alert type="info"
+                    message="Trial ends in {{ $freeTrialRemainingDays }} days.
+            Upgrade <a href='{{ route('sub-checkout') }}'>here</a> now !" />
             @endif
 
             @yield('content')

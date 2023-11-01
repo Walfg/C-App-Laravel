@@ -27,7 +27,7 @@
                 {{-- <use xlink:href="#{{ Session::get('alert')['type'] }}" /> --}}
             </svg>
             <div>
-                {{ $message }}
+                {!! $message !!}
                 {{-- {{ Session::get('alert')['message'] }} --}}
             </div>
         </div>
