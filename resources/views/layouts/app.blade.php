@@ -59,10 +59,13 @@
                             @endif
                         @else
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('card-shares.create') }}">Share Cards</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('contacts.index') }}">Contact list</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contacts.create') }}">Create New Contact</a>
+                                <a class="nav-link" href="{{ route('contacts.create') }}">Create New Card</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

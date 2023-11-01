@@ -32,11 +32,12 @@ class StoreCardRequest extends FormRequest
                 "email",
                 //applies the rule BUT allowing other users to register the same mail as contact,
                 //once pero user.
-                Rule::unique("contacts", "email")->where("user_id", auth()->user())
+                Rule::unique("contacts", "email")
+                ->where("user_id", auth()->id())
                 ->ignore(request()->route("card"))
             ],
             "age" => "required|numeric|min:3|max:255",
-            "profile_pricture" => "image|nullable"
+            "profile_picture" => "image|nullable"
         ];
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\CardShareController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StripeController;
 use App\Models\Card;
@@ -44,12 +45,17 @@ Route::middleware("auth", "subscription")->group(function () {
 
     // Route::middleware("auth", "subscription")->resource("contacts", CardController::class);
 
+    Route::resource("card-shares", CardShareController::class)->except(["show","edit", "update"]);
 
 });
 
-Route::get('/sub-checkout', [StripeController::class, "subCheckout"])->name("sub-checkout");
-Route::get('/billing-portal', [StripeController::class, "billingPortal"])->name("billing-portal");
+Route::middleware("auth")->group(function () {
 
-Route::middleware("auth")->get('/free-trial-end', [StripeController::class, "freeTrialEnd"])->name("free-trial-end");
+    Route::get('/sub-checkout', [StripeController::class, "subCheckout"])->name("sub-checkout");
+    Route::get('/billing-portal', [StripeController::class, "billingPortal"])->name("billing-portal");
+    Route::get('/free-trial-end', [StripeController::class, "freeTrialEnd"])->name("free-trial-end");
+});
+
+
 
 // Route::middleware("auth", "subscription")->
