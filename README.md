@@ -11,27 +11,27 @@
 
 ## About Contacts-App-Laravel/Contacs-App-Laravel
 
->This project, made to refresh, learn, and update some of my knowledge regarding Laravel Framework, includes the use of the following points and further:
->Migrations
->Routing
->Auth (Basic)
->Use of Webpack Mix (Laravel 9.1.10)
->Bootstrap 5 & Bootswatch
->MVC
->Validations & Requests managers
->CRUD methods
->Blade & Blade Components usage
->Access Polices
->Eloquent usage & DB management
->Sessions, flash messages and more.
->File upload and storage.
->Paywall implementations (Stripe) + premium/non-premium rules
->Further Auth + Access rules through middleware usage.
->Pagination and management of queries.
->Eloquent relationships, mainly: One to Many, Many to one, Many to Many.
->Pivot tables, its queries & usage.
->Implementation of Automatized mails to users.
->Cache usage and management.
+-This project, made to refresh, learn, and update some of my knowledge regarding Laravel Framework, includes the use of the following points and further:
+-Migrations
+-Routing
+-Auth (Basic)
+-Use of Webpack Mix (Laravel 9.1.10)
+-Bootstrap 5 & Bootswatch
+-MVC
+-Validations & Requests managers
+-CRUD methods
+-Blade & Blade Components usage
+-Access Polices
+-Eloquent usage & DB management
+-Sessions, flash messages and more.
+-File upload and storage.
+-Paywall implementations (Stripe) + premium/non-premium rules
+-Further Auth + Access rules through middleware usage.
+-Pagination and management of queries.
+-Eloquent relationships, mainly: One to Many, Many to one, Many to Many.
+-Pivot tables, its queries & usage.
+-Implementation of Automatized mails to users.
+-Cache usage and management.
 
 
 
