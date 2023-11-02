@@ -16,3 +16,4 @@ yarn-error.log
 !.gitignore
 !/profiles
 !/profiles/default.png
+!stripe.exe
