@@ -34,6 +34,7 @@ It's a port of a small way basic project done in 2 days, using PHP, before start
 - Pivot tables, its queries & usage.
 - Implementation of Automatized mails to users.
 - Cache usage and management.
+- Seeding/Database seeders.
 
 
 
