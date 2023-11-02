@@ -59,6 +59,9 @@
                             @endif
                         @else
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('card-shares.index') }}">Cards Shared</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('card-shares.create') }}">Share Cards</a>
                             </li>
                             <li class="nav-item">

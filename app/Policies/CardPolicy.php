@@ -30,7 +30,7 @@ class CardPolicy
      */
     public function view(User $user, Card $card)
     {
-        return $user->id === $card->user_id;
+        return $user->id === $card->user_id || $user->sharedContacts()->firstWhere("card_id", $card->id);
     }
 
     /**

@@ -49,7 +49,7 @@ class User extends Authenticatable
         return $this->hasMany(Card::class);
     }
 
-    public function SharedContacts() {
+    public function sharedContacts() {
         return $this->belongsToMany(Card::class, "card_shares");
     }
 

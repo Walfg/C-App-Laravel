@@ -23,7 +23,7 @@ class Card extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function SharedWithUsers() {
+    public function sharedWithUsers() {
         return $this->belongsToMany(User::class, "card_shares");
     }
 }
