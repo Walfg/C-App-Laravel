@@ -9,9 +9,10 @@
 
 ## Warning: This Project includes many commented lines: Those are ways to do the same things I experimented with, then discarted for, on my opinion, the best ones.
 
+
 ## About Contacts-App-Laravel/Contacs-App-Laravel
 
--This project, made to refresh, learn, and update some of my knowledge regarding Laravel Framework, includes the use of the following points and further:
+This project, made to refresh, learn, and update some of my knowledge regarding Laravel Framework, includes the use of the following points and further:
 - Migrations
 - Routing
 - Auth (Basic)
