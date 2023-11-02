@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCardRequest;
 use App\Models\Card;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
 class CardController extends Controller
@@ -78,6 +79,8 @@ class CardController extends Controller
         // Card::create($data);
 
         // Session::flash("alert", ["message" => "Contact Card for $card->name created!","type" => "success"]);
+
+        Cache::forget(auth()->id());
 
         return redirect()->route('home')->with("alert", [
             "message" => "Contact Card for $card->name created!",
@@ -156,6 +159,8 @@ class CardController extends Controller
 
         // Session::flash("alert", ["message" => "$card->name Contact Card updated!", "type" => "warning"]);
 
+        Cache::forget(auth()->id());
+
         return redirect()->route("home")->with("alert", [
             "message" => "$card->name Contact Card updated!",
             "type" => "warning"
@@ -176,6 +181,8 @@ class CardController extends Controller
         $card->delete();
 
         // Session::flash("alert", ["message" => "$card->name Contact Card deleted!", "type" => "danger"]);
+
+        Cache::forget(auth()->id());
 
         return back()->with("alert", [
             "message" => "$card->name Contact Card deleted!",
