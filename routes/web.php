@@ -4,6 +4,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\CardShareController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\TokenController;
 use App\Models\Card;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,7 @@ Route::middleware("auth", "subscription")->group(function () {
     // Route::middleware("auth", "subscription")->resource("contacts", CardController::class);
 
     Route::resource("card-shares", CardShareController::class)->except(["show","edit", "update"]);
+    Route::resource("tokens", TokenController::class)->only(["create","store"]);
 
 });
 

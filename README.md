@@ -35,6 +35,7 @@ It's a port of a small way basic project done in 2 days, using PHP, before start
 - Implementation of Automatized mails to users.
 - Cache usage and management.
 - Seeding/Database seeders.
+- Creation and management of API token from my app (Sanctum).
 
 
 
