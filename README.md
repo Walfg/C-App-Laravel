@@ -13,7 +13,7 @@
 Take action without knowing what are you doing, leads the same place as knowing all but doing nothing:
 Although sometimes the first option is even worst-->
 
-## About Contacts-App-Laravel/Contacs-App-Laravel
+## About C-App-Laravel/C-App-Laravel
 
 This project, made to refresh, learn, and update some of my knowledge regarding Laravel Framework.
 It's a port of a small way basic project done in 2 days, using PHP, before starting this one.
@@ -40,7 +40,7 @@ This project includes the use of the following features and further:
 - Cache usage and management.
 - Seeding/Database seeders.
 - Creation and management of API token from my app (Sanctum).
-- Unit testing added.
+- Unit testing for different purposes.
 
 
 
