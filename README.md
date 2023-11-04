@@ -9,11 +9,15 @@
 
 ## Warning: This Project includes many commented lines: Those are ways to do the same things I experimented with, then discarted for, on my opinion, the best ones.
 
+<!-- Solve code problems without understanding, it's the opposite to walk a step in your mind, but not moving your body:
+Take action without knowing what are you doing, leads the same place as knowing all but doing nothing:
+Although sometimes the first option is even worst-->
 
 ## About Contacts-App-Laravel/Contacs-App-Laravel
 
 This project, made to refresh, learn, and update some of my knowledge regarding Laravel Framework.
-It's a port of a small way basic project done in 2 days, using PHP, before starting this one, which includes the use of the following points and further:
+It's a port of a small way basic project done in 2 days, using PHP, before starting this one.
+This project includes the use of the following features and further:
 - Migrations
 - Routing
 - Auth (Basic)
@@ -36,6 +40,7 @@ It's a port of a small way basic project done in 2 days, using PHP, before start
 - Cache usage and management.
 - Seeding/Database seeders.
 - Creation and management of API token from my app (Sanctum).
+- Unit testing added.
 
 
 
