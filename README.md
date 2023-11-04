@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Warning: This Project includes many commented lines: Those are ways to do the same things I experimented with, then discarted for, on my opinion, the best ones.
+## Warning: This project includes numerous commented-out lines. These represent alternative approaches I experimented with before discarding them in favor of, in my opinion, better solutions.
 
 <!-- Solve code problems without understanding, it's the opposite to walk a step in your mind, but not moving your body:
 Take action without knowing what are you doing, leads the same place as knowing all but doing nothing:
