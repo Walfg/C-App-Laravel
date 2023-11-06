@@ -15,7 +15,7 @@ Although sometimes the first option is even worst-->
 
 ## About C-App-Laravel/C-App-Laravel
 
-This project, made to refresh, learn, and update some of my knowledge regarding Laravel Framework.
+This project was made to refresh, learn, and update some of my knowledge regarding Laravel Framework.
 It's a port of a small way basic project done in 2 days, using PHP, before starting this one.
 This project includes the use of the following features and further:
 - Migrations
